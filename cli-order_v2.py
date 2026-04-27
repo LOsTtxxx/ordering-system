@@ -11,19 +11,22 @@ order_dict = {}
 while True:
     ordering = input("請輸入指令: ")
 
-
     if ordering == "結束":
         break
-
 
     parts = ordering.split()
     command = parts[0]
 
 
+
     # 刪除
     if command == "刪除":
-        name = parts[1]
 
+        if len(parts) != 2:
+            print("輸入格式錯誤，請輸入: 刪除 商品 ")
+            continue
+
+        name = parts[1]
         if name in order_dict:
             del order_dict[name]
         else:
@@ -32,8 +35,17 @@ while True:
 
     # 更改
     elif command == "更改":
+
+        if len(parts) != 3:
+            print("輸入格式錯誤，請輸入: 更改 商品 數量")
+            continue 
+
         name = parts[1]
-        count = int(parts[2])
+        count = parts[2]
+
+        if not count.isdigit() or int(count) <= 0:
+            print("請輸入正整數")
+            continue
 
         if name in order_dict:
             order_dict[name] = count
@@ -43,6 +55,10 @@ while True:
 
     # 累加、新增
     else:
+        if len(parts) != 2:
+            print("輸入格式錯誤，請輸入: 商品 數量 ")
+            continue
+
         name = parts[0]
         count = int(parts[1])
         if name not in menu:

@@ -14,8 +14,11 @@ while True:
     if ordering == "結束":
         break
 
-    name , count = ordering.split()
-    count = int(count)
+    parts = ordering.split()
+    if len(parts) != 2:
+        print("格式錯誤，請輸入: 商品 + 數量")
+        continue
+    name , count = parts
 
     if name not in menu:
         print("此商品不存在")
