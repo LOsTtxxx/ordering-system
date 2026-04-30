@@ -20,6 +20,11 @@ while True:
         continue
     name , count = parts
 
+    if not count.isdigit() or int(count) <= 0:
+        print("請輸入正整數")
+        continue
+    count = int(count)
+
     if name not in menu:
         print("此商品不存在")
         continue

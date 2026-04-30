@@ -81,12 +81,3 @@ for name , count in order_dict.items():
     total += subtotal
 
 print(f"總金額是: {total}")
-
-    
-
-
-
-
-
-
-
