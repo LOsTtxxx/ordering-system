@@ -34,11 +34,16 @@ def add_item(order_dict , menu , name , count):
 # 訂單、菜單函式
 def checkout(order_dict , menu):
     total = 0
-    for name , count in order_dict.items():
-        subtotal = menu[name] * count
-        print(f"{name} x {count} = {subtotal}")
-        total += subtotal
-    print(f"總金額是: {total}")
+    with open("checkout.txt" , "a") as f:
+        for name , count in order_dict.items():
+            subtotal = menu[name] * count
+            print(f"{name} x {count} = {subtotal}")
+            f.write(f"{name} x {count} = {subtotal}\n")
+            total += subtotal
+        print(f"總金額是: {total}")
+        f.write(f"總金額是: {total}\n")
+        f.write("-" * 20 + "\n")
+
 
 # 輸入
 while True:
